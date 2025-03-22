@@ -69,6 +69,51 @@ npm start
 
 5. Open your browser and navigate to `http://localhost:3000`
 
+## Deployment on Vercel
+
+EcoGuardian can be easily deployed on Vercel by following these steps:
+
+### Using Vercel CLI
+
+1. Install Vercel CLI globally:
+```bash
+npm install -g vercel
+```
+
+2. Log in to your Vercel account:
+```bash
+vercel login
+```
+
+3. Deploy the application:
+```bash
+vercel
+```
+
+4. For production deployment:
+```bash
+vercel --prod
+```
+
+### Using Vercel Dashboard
+
+1. Push your code to a Git repository (GitHub, GitLab, BitBucket)
+2. Log in to your [Vercel Dashboard](https://vercel.com/dashboard)
+3. Click "Add New" > "Project"
+4. Import your Git repository
+5. Configure your project:
+   - Set the Framework Preset to "Create React App"
+   - Add your environment variables from `.env.local`
+6. Click "Deploy"
+
+### Environment Variables
+
+When deploying to Vercel, you'll need to add the same environment variables from your `.env.local` file to your Vercel project:
+
+1. Go to your project settings in Vercel
+2. Navigate to the "Environment Variables" tab
+3. Add all the required environment variables with their corresponding values
+
 ## Google AI Integration
 
 EcoGuardian leverages multiple Google AI technologies to provide powerful environmental analysis:
