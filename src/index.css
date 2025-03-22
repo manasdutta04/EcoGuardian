@@ -1,6 +1,9 @@
-@tailwind base;
-@tailwind components;
+@import './styles/GlobalStyles.css';
+
+/* Keep only Tailwind utilities for backward compatibility */
 @tailwind utilities;
+
+/* The rest is handled by our new GlobalStyles.css */
 
 body {
   margin: 0;
