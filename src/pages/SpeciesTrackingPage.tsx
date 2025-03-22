@@ -138,7 +138,7 @@ const SpeciesTrackingPage: React.FC = () => {
   return (
     <div className={styles.page}>
       <PageHeader
-        title="Species Identification"
+        title="Species Tracking"
         description="Upload wildlife images to identify species and receive conservation information using AI-powered analysis."
       />
 
@@ -252,55 +252,59 @@ const SpeciesTrackingPage: React.FC = () => {
               </div>
             </div>
 
-            <div className={styles.resultsBody}>
-              <h2 className={styles.speciesName}>{analysisResult.speciesName}</h2>
-              <p className={styles.scientificName}>{analysisResult.scientificName}</p>
-
-              <div className={styles.infoGrid}>
-                <div className={styles.infoItem}>
-                  <div className={styles.infoLabel}>Conservation Status</div>
-                  <div className={styles.infoValue}>
-                    {analysisResult.conservationStatus}
-                    {analysisResult.conservationStatus === 'Least Concern' && (
-                      <span className={`${styles.statusBadge} ${styles.statusGood}`}>Least Concern</span>
-                    )}
-                    {(analysisResult.conservationStatus === 'Near Threatened' || 
-                      analysisResult.conservationStatus === 'Vulnerable') && (
-                      <span className={`${styles.statusBadge} ${styles.statusConcern}`}>{analysisResult.conservationStatus}</span>
-                    )}
-                    {(analysisResult.conservationStatus === 'Endangered' || 
-                      analysisResult.conservationStatus === 'Critically Endangered') && (
-                      <span className={`${styles.statusBadge} ${styles.statusDanger}`}>{analysisResult.conservationStatus}</span>
-                    )}
+            <div className={styles.resultsSection}>
+              <h4 className={styles.resultsSectionTitle}>Species Information</h4>
+              
+              <div className={styles.resultsGrid}>
+                <div className={styles.resultItem}>
+                  <div className={styles.resultItemTitle}>Species Name</div>
+                  <div className={styles.resultItemValue}>{analysisResult.speciesName}</div>
+                </div>
+                
+                <div className={styles.resultItem}>
+                  <div className={styles.resultItemTitle}>Scientific Name</div>
+                  <div className={styles.resultItemValue}><em>{analysisResult.scientificName}</em></div>
+                </div>
+                
+                <div className={styles.resultItem}>
+                  <div className={styles.resultItemTitle}>Conservation Status</div>
+                  <div className={styles.resultItemValue}>
+                    <span className={`${styles.badge} ${
+                      analysisResult.conservationStatus.includes('Endangered') ? styles.badgePoor : 
+                      analysisResult.conservationStatus.includes('Vulnerable') || 
+                      analysisResult.conservationStatus.includes('Threatened') ? styles.badgeModerate : 
+                      styles.badgeGood}`}>
+                      {analysisResult.conservationStatus}
+                    </span>
                   </div>
                 </div>
                 
-                <div className={styles.infoItem}>
-                  <div className={styles.infoLabel}>Population</div>
-                  <div className={styles.infoValue}>{analysisResult.population}</div>
+                <div className={styles.resultItem}>
+                  <div className={styles.resultItemTitle}>Population Trend</div>
+                  <div className={styles.resultItemValue}>{analysisResult.population}</div>
+                </div>
+                
+                <div className={styles.resultItem}>
+                  <div className={styles.resultItemTitle}>Habitat</div>
+                  <div className={styles.resultItemValue}>{analysisResult.habitat}</div>
                 </div>
               </div>
+            </div>
 
-              <div className={styles.sectionDivider}></div>
-              
-              <h3 className={styles.sectionTitle}>Habitat Information</h3>
-              <p>{analysisResult.habitat}</p>
-              
-              <div className={styles.sectionDivider}></div>
-              
-              <h3 className={styles.sectionTitle}>Threats</h3>
+            <div className={styles.resultsSection}>
+              <h4 className={styles.resultsSectionTitle}>Identified Threats</h4>
               <ul className={styles.challengesList}>
                 {analysisResult.threats.map((threat, index) => (
                   <li key={index} className={styles.challengeItem}>{threat}</li>
                 ))}
               </ul>
-              
-              <div className={styles.sectionDivider}></div>
-              
-              <h3 className={styles.sectionTitle}>Conservation Recommendations</h3>
+            </div>
+
+            <div className={styles.resultsSection}>
+              <h4 className={styles.resultsSectionTitle}>Conservation Recommendations</h4>
               <ul className={styles.recommendationsList}>
-                {analysisResult.recommendations.map((rec, index) => (
-                  <li key={index} className={styles.recommendationItem}>{rec}</li>
+                {analysisResult.recommendations.map((recommendation, index) => (
+                  <li key={index} className={styles.recommendationItem}>{recommendation}</li>
                 ))}
               </ul>
             </div>

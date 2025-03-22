@@ -352,12 +352,12 @@ p {
 /* Mobile-first approach - these rules apply to all devices and can be overridden for larger screens */
 .responsive-container {
   width: 100%;
-  max-width: var(--content-max-width-mobile);
+  max-width: 100%;
   padding-left: var(--mobile-padding);
   padding-right: var(--mobile-padding);
   margin-left: auto;
   margin-right: auto;
-  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* Improved text readability on small screens */
@@ -403,53 +403,47 @@ table {
   display: block;
 }
 
-/* Better spacing for stacked elements on mobile */
-.stack-mobile > * + * {
-  margin-top: 1rem;
-}
-
-/* Media query for tablets */
-@media (min-width: 768px) {
-  .responsive-container {
-    max-width: var(--content-max-width-tablet);
-    padding-left: var(--tablet-padding);
-    padding-right: var(--tablet-padding);
-  }
-  
-  h1 {
-    font-size: 2.25rem;
-  }
-  
-  h2 {
-    font-size: 1.75rem;
-  }
-  
-  .stack-mobile > * + * {
-    margin-top: 1.25rem;
-  }
-}
-
 /* Media query for desktop */
 @media (min-width: 1024px) {
   .responsive-container {
-    max-width: var(--content-max-width-desktop);
+    max-width: 100%;
     padding-left: var(--desktop-padding);
     padding-right: var(--desktop-padding);
   }
   
+  /* Apply custom width constraints to main content sections */
+  .content-section {
+    padding: 3rem 0;
+  }
+  
+  /* Improved typography for larger screens */
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
+    line-height: 1.2;
   }
   
   h2 {
-    font-size: 2rem;
+    font-size: 2.25rem;
+    line-height: 1.3;
   }
 }
 
 /* Desktop fixes */
 @media (min-width: 1280px) {
   .responsive-container {
-    max-width: 1200px;
+    max-width: 100%;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  /* Ensure container width is consistent across all sections */
+  .container, 
+  .sectionContainer {
+    max-width: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -457,6 +451,10 @@ table {
 @media (min-width: 1920px) {
   :root {
     --content-max-width-desktop: 1400px;
+  }
+  
+  .responsive-container {
+    max-width: 1400px;
   }
   
   body {

@@ -11,8 +11,15 @@
   padding-top: 4rem;
   padding-bottom: 4rem;
   overflow: hidden;
+  width: 100%;
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0;
+  height: auto;
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (min-width: 768px) {
@@ -25,8 +32,15 @@
 @media (min-width: 1024px) {
   .heroSection {
     padding-top: 8rem;
-    padding-bottom: 6rem;
+    padding-bottom: 8rem;
     max-width: 100%;
+    min-height: 80vh;
+  }
+}
+
+@media (min-width: 1280px) {
+  .heroSection {
+    min-height: 85vh;
   }
 }
 
@@ -45,12 +59,14 @@
 .heroBackgroundImage {
   position: absolute;
   inset: 0;
+  top: -4rem;
   background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
   width: 100%;
-  height: 100%;
+  height: calc(100% + 4rem);
+  z-index: 0;
 }
 
 .animatedParticles {
@@ -110,20 +126,23 @@
 
 .heroContent {
   position: relative;
-  max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
   padding-left: 1rem;
   padding-right: 1rem;
   z-index: 10;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 
 @media (min-width: 640px) {
   .heroContent {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-    max-width: 90%;
   }
 }
 
@@ -131,12 +150,23 @@
   .heroContent {
     padding-left: 2rem;
     padding-right: 2rem;
-    max-width: 1200px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .heroContent {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
 
 .textCenter {
   text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .heroTitle {
@@ -145,6 +175,8 @@
   letter-spacing: -0.025em;
   color: white;
   animation: fadeIn 1s ease-out;
+  width: 100%;
+  max-width: 800px;
 }
 
 @media (min-width: 640px) {
@@ -156,6 +188,12 @@
 @media (min-width: 768px) {
   .heroTitle {
     font-size: 3.75rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .heroTitle {
+    font-size: 4.25rem;
   }
 }
 
@@ -194,18 +232,49 @@
   animation: fadeIn 1s ease-out;
   animation-delay: 0.4s;
   animation-fill-mode: both;
+  width: 100%;
+  max-width: 500px;
 }
 
 @media (min-width: 640px) {
   .buttonGroup {
     flex-direction: row;
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .buttonGroup {
+    max-width: 700px;
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .buttonGroup {
+    margin-top: 3rem;
+    max-width: 800px;
+  }
+}
+
+.primaryButton, .secondaryButton {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  flex: 1;
+  font-size: 1.125rem;
+}
+
+@media (min-width: 1024px) {
+  .primaryButton, .secondaryButton {
+    font-size: 1.25rem;
+    padding: 1.25rem 3rem;
   }
 }
 
 .primaryButton {
   padding: 1rem 2.5rem;
   border: 3px solid white;
-  font-size: 1.125rem;
   font-weight: 700;
   border-radius: 9999px;
   color: #22c55e;
@@ -242,16 +311,9 @@
   transform: translateX(100%);
 }
 
-@media (min-width: 768px) {
-  .primaryButton {
-    font-size: 1.25rem;
-  }
-}
-
 .secondaryButton {
   padding: 1rem 2.5rem;
   border: 3px solid white;
-  font-size: 1.125rem;
   font-weight: 700;
   border-radius: 9999px;
   color: white;
@@ -268,12 +330,6 @@
   transform: translateY(-0.25rem);
   box-shadow: 0 15px 20px -3px rgba(0, 0, 0, 0.4);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-@media (min-width: 768px) {
-  .secondaryButton {
-    font-size: 1.25rem;
-  }
 }
 
 .waveDivider {
@@ -377,6 +433,22 @@
   .featuresGrid {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .featuresGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 3rem;
+  }
+
+  .sectionContainer {
+    max-width: 1200px;
+  }
+  
+  .ctaContent {
+    max-width: 1200px;
+    padding: 2rem;
   }
 }
 

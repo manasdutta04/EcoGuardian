@@ -351,9 +351,9 @@ const HabitatMonitoringPage: React.FC = () => {
           </p>
 
           <ImageDropzone 
-            onFileSelect={handleFileSelect} 
+                    onFileSelect={handleFileSelect}
             maxSize={10 * 1024 * 1024} // 10MB
-            acceptedFileTypes="image/*"
+                    acceptedFileTypes="image/*"
           />
 
           {selectedFile && (
@@ -362,7 +362,7 @@ const HabitatMonitoringPage: React.FC = () => {
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
               <span>Selected file: {selectedFile.name}</span>
-            </div>
+                </div>
           )}
 
           <div className={styles.formSection}>
@@ -374,49 +374,49 @@ const HabitatMonitoringPage: React.FC = () => {
             <div className={styles.inputGrid}>
               <div className={styles.inputGroup}>
                 <label htmlFor="location" className={styles.inputLabel}>Location (optional)</label>
-                <input
-                  type="text"
+                  <input
+                    type="text"
                   id="location"
                   className={styles.input}
                   placeholder="e.g. Pacific Northwest, Amazon Basin"
-                  value={locationData}
-                  onChange={(e) => setLocationData(e.target.value)}
-                />
-              </div>
+                    value={locationData}
+                    onChange={(e) => setLocationData(e.target.value)}
+                  />
+                </div>
 
               <div className={styles.inputGroup}>
                 <label htmlFor="habitatType" className={styles.inputLabel}>Habitat Type (optional)</label>
-                <select
+                  <select
                   id="habitatType"
                   className={styles.input}
                   value={habitatType}
                   onChange={(e) => setHabitatType(e.target.value)}
                 >
                   <option value="">Select habitat type</option>
-                  <option value="forest">Forest</option>
-                  <option value="wetland">Wetland</option>
-                  <option value="grassland">Grassland</option>
-                  <option value="coastal">Coastal</option>
-                  <option value="desert">Desert</option>
-                  <option value="freshwater">Freshwater</option>
-                  <option value="marine">Marine</option>
+                    <option value="forest">Forest</option>
+                    <option value="wetland">Wetland</option>
+                    <option value="grassland">Grassland</option>
+                    <option value="coastal">Coastal</option>
+                    <option value="desert">Desert</option>
+                    <option value="freshwater">Freshwater</option>
+                    <option value="marine">Marine</option>
                   <option value="mountain">Mountain</option>
                   <option value="urban">Urban</option>
                   <option value="agricultural">Agricultural</option>
-                </select>
+                  </select>
               </div>
-            </div>
-          </div>
+                </div>
+              </div>
 
           <div className={styles.buttonWrapper}>
-            <button 
-              type="button" 
+                <button
+                  type="button"
               className={styles.secondaryButton}
               onClick={resetForm}
-            >
-              Reset
-            </button>
-            <button
+                >
+                  Reset
+                </button>
+                <button
               type="button"
               className={styles.button}
               onClick={handleSubmit}
@@ -431,7 +431,7 @@ const HabitatMonitoringPage: React.FC = () => {
               ) : (
                 "Analyze Habitat"
               )}
-            </button>
+                </button>
           </div>
         </div>
 
@@ -474,7 +474,7 @@ const HabitatMonitoringPage: React.FC = () => {
                 <div className={styles.resultItem}>
                   <div className={styles.resultItemTitle}>Health Status</div>
                   <div className={styles.resultItemValue}>
-                    {analysisResult.healthStatus}
+                      {analysisResult.healthStatus}
                     {analysisResult.healthStatus === 'Good' && (
                       <span className={`${styles.badge} ${styles.badgeGood}`}>Good</span>
                     )}
@@ -486,28 +486,28 @@ const HabitatMonitoringPage: React.FC = () => {
                     )}
                   </div>
                 </div>
+                </div>
               </div>
-            </div>
 
             <div className={styles.resultsSection}>
               <h4 className={styles.resultsSectionTitle}>Identified Threats</h4>
               <ul className={styles.challengesList}>
-                {analysisResult.threats.map((threat, index) => (
+                  {analysisResult.threats.map((threat, index) => (
                   <li key={index} className={styles.challengeItem}>{threat}</li>
-                ))}
-              </ul>
-            </div>
+                  ))}
+                </ul>
+              </div>
 
             <div className={styles.resultsSection}>
               <h4 className={styles.resultsSectionTitle}>Conservation Recommendations</h4>
               <ul className={styles.recommendationsList}>
-                {analysisResult.recommendations.map((recommendation, index) => (
+                  {analysisResult.recommendations.map((recommendation, index) => (
                   <li key={index} className={styles.recommendationItem}>{recommendation}</li>
-                ))}
-              </ul>
-            </div>
+                  ))}
+                </ul>
+              </div>
 
-            <div className={styles.disclaimer}>
+              <div className={styles.disclaimer}>
               Note: This analysis is generated using AI and should be verified by ecological experts. Results may vary based on image quality and available data.
             </div>
           </div>

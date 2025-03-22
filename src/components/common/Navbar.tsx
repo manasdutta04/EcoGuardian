@@ -18,9 +18,13 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Handle scroll effect
+  // Handle scroll effect with improved scroll detection
   useEffect(() => {
+    // Set initial scroll state
+    setIsScrolled(window.scrollY > 10);
+    
     const handleScroll = () => {
+      // Use a threshold of 10px to determine when the navbar should change appearance
       if (window.scrollY > 10) {
         setIsScrolled(true);
       } else {
@@ -28,7 +32,10 @@ const Navbar: React.FC = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    // Add event listener with passive option for better scroll performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Clean up
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

@@ -101,7 +101,7 @@ function AppContent() {
     <div className={styles.appContainer}>
       <Navbar />
       <ScrollToTop />
-      <main className={`${styles.mainContent} responsive-container`}>
+      <main className={`${styles.mainContent}`}>
         <Routes>
           {/* Home route - redirects to login or dashboard based on auth status */}
           <Route path="/" element={<HomeRoute />} />
