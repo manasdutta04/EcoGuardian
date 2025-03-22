@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
+import logoImage from '../../assets/images/ecoguardian-logo.png';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -20,7 +21,7 @@ const Footer: React.FC = () => {
             <div className={styles.logoContainer}>
               <div className={styles.logoIconWrapper}>
                 <img 
-                  src="/images/ecoguardian-logo.png" 
+                  src={logoImage} 
                   alt="EcoGuardian Logo" 
                   className={styles.logoIcon} 
                 />

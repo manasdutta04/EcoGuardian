@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import styles from './Navbar.module.css';
+import logoImage from '../../assets/images/ecoguardian-logo.png';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -80,7 +81,7 @@ const Navbar: React.FC = () => {
             <Link to={currentUser ? "/dashboard" : "/"} className={`${styles.logoLink} ${isScrolled ? styles.logoLinkDark : styles.logoLinkLight}`}>
               <div className={`${styles.logoIconWrapper} ${isScrolled ? styles.logoIconWrapperDark : styles.logoIconWrapperLight}`}>
                 <img 
-                  src="/images/ecoguardian-logo.png" 
+                  src={logoImage} 
                   alt="EcoGuardian Logo" 
                   className={styles.logoIcon} 
                 />
@@ -189,7 +190,7 @@ const Navbar: React.FC = () => {
           <div className={styles.mobileMenuHeader}>
             <div className={styles.mobileMenuTitle}>
               <img 
-                src="/images/ecoguardian-logo.png" 
+                src={logoImage} 
                 alt="EcoGuardian Logo" 
                 className={styles.mobileMenuLogo} 
               />
