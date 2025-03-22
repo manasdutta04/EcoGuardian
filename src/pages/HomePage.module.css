@@ -1,19 +1,32 @@
 .container {
   background-color: white;
+  width: 100%;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* Hero Section Styles */
 .heroSection {
   position: relative;
-  padding-top: 8rem;
-  padding-bottom: 6rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   overflow: hidden;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .heroSection {
-    padding-top: 10rem;
-    padding-bottom: 8rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroSection {
+    padding-top: 8rem;
+    padding-bottom: 6rem;
+    max-width: 100%;
   }
 }
 
@@ -36,6 +49,8 @@
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
+  width: 100%;
+  height: 100%;
 }
 
 .animatedParticles {
@@ -101,12 +116,14 @@
   padding-left: 1rem;
   padding-right: 1rem;
   z-index: 10;
+  width: 100%;
 }
 
 @media (min-width: 640px) {
   .heroContent {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    max-width: 90%;
   }
 }
 
@@ -114,6 +131,7 @@
   .heroContent {
     padding-left: 2rem;
     padding-right: 2rem;
+    max-width: 1200px;
   }
 }
 
@@ -280,7 +298,8 @@
 }
 
 .sectionContainer {
-  max-width: 80rem;
+  width: 100%;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
@@ -291,6 +310,7 @@
   .sectionContainer {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    max-width: 90%;
   }
 }
 
@@ -298,6 +318,7 @@
   .sectionContainer {
     padding-left: 2rem;
     padding-right: 2rem;
+    max-width: 1200px;
   }
 }
 

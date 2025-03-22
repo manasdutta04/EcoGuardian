@@ -1,0 +1,331 @@
+/* Auth Pages Styling */
+.authContainer {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-gray-50);
+}
+
+.authCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.authImage {
+  display: none; /* Hidden on mobile by default */
+}
+
+.authForm {
+  width: 100%;
+  max-width: 450px;
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 2rem;
+}
+
+.authHeader {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.authTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--color-gray-900);
+}
+
+.authSubtitle {
+  font-size: 1rem;
+  color: var(--color-gray-500);
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-gray-700);
+  margin-bottom: 0.5rem;
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-gray-300);
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--color-gray-900);
+  background-color: white;
+  transition: all 0.15s ease;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.formTextarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-gray-300);
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--color-gray-900);
+  background-color: white;
+  transition: all 0.15s ease;
+  min-height: 120px;
+}
+
+.formTextarea:focus {
+  outline: none;
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.authButton {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-primary-600);
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-top: 0.5rem;
+}
+
+.authButton:hover {
+  background-color: var(--color-primary-700);
+}
+
+.authButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+.authButton:disabled {
+  background-color: var(--color-gray-400);
+  cursor: not-allowed;
+}
+
+.forgotPasswordLink {
+  background: none;
+  border: none;
+  color: var(--color-primary-600);
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.forgotPasswordLink:hover {
+  color: var(--color-primary-700);
+  text-decoration: underline;
+}
+
+.googleButton {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background-color: white;
+  color: var(--color-gray-800);
+  font-weight: 500;
+  border: 1px solid var(--color-gray-300);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.googleButton:hover {
+  background-color: var(--color-gray-50);
+}
+
+.googleButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.5);
+}
+
+.googleIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.75rem;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  color: var(--color-gray-400);
+  font-size: 0.875rem;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-gray-200);
+}
+
+.divider::before {
+  margin-right: 1rem;
+}
+
+.divider::after {
+  margin-left: 1rem;
+}
+
+.authFooter {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+}
+
+.authLink {
+  color: var(--color-primary-600);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.authLink:hover {
+  color: var(--color-primary-700);
+  text-decoration: underline;
+}
+
+.termsText {
+  font-size: 0.75rem;
+  color: var(--color-gray-500);
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.termsLink {
+  color: var(--color-primary-600);
+  text-decoration: none;
+}
+
+.termsLink:hover {
+  color: var(--color-primary-700);
+  text-decoration: underline;
+}
+
+.passwordHint {
+  font-size: 0.75rem;
+  color: var(--color-gray-500);
+  margin-top: 0.25rem;
+}
+
+.errorAlert {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  background-color: var(--color-red-50);
+  color: var(--color-red-800);
+  border: 1px solid var(--color-red-200);
+}
+
+.successAlert {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  background-color: var(--color-green-50);
+  color: var(--color-green-800);
+  border: 1px solid var(--color-green-200);
+}
+
+@media (min-width: 1024px) {
+  .authContainer {
+    display: flex;
+  }
+  
+  .authCard {
+    flex: 1;
+    padding: 3rem;
+  }
+  
+  .authImage {
+    flex: 1;
+    display: block;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .imageOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+    color: white;
+  }
+  
+  .imageTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    max-width: 24rem;
+  }
+  
+  .imageText {
+    font-size: 1.1rem;
+    max-width: 24rem;
+    line-height: 1.5;
+  }
+}
+
+/* Responsive styles */
+@media (min-width: 768px) {
+  .authImage {
+    display: block;
+    flex: 1;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .authCard {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+  
+  .authTitle {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .authCard {
+    padding: 3rem;
+  }
+} 

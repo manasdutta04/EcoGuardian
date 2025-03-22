@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import styles from './Navbar.module.css';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { currentUser, logout } = useAuth();
+  
+  // Check if user is on login page
+  const isLoginPage = location.pathname === '/login';
+  const isRegisterPage = location.pathname === '/register';
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -35,16 +42,41 @@ const Navbar: React.FC = () => {
     return location.pathname === path;
   };
 
+  const handleAuthAction = async () => {
+    if (currentUser) {
+      try {
+        await logout();
+        navigate('/');
+      } catch (error) {
+        console.error('Failed to log out:', error);
+      }
+    } else {
+      navigate('/login');
+    }
+  };
+
+  // Navigate to register page
+  const handleRegister = () => {
+    navigate('/register');
+  };
+
+  // Navigate to login page
+  const handleLogin = () => {
+    navigate('/login');
+  };
+
   return (
     <nav className={`${styles.navbar} ${isScrolled ? styles.solid : styles.transparent}`}>
       <div className={styles.container}>
         <div className={styles.navInner}>
           <div className={styles.logoWrapper}>
-            <Link to="/" className={`${styles.logoLink} ${isScrolled ? styles.logoLinkDark : styles.logoLinkLight}`}>
+            <Link to={currentUser ? "/dashboard" : "/"} className={`${styles.logoLink} ${isScrolled ? styles.logoLinkDark : styles.logoLinkLight}`}>
               <div className={`${styles.logoIconWrapper} ${isScrolled ? styles.logoIconWrapperDark : styles.logoIconWrapperLight}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" className={styles.logoIcon} viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M4.2 2.5a1 1 0 011-.8h1.5a1 1 0 011 .8l.3 1.5h1.3l.3-1.5a1 1 0 011-.8h1.5a1 1 0 011 .8l.3 1.5H15a1 1 0 011 1v1a1 1 0 01-1 1h-.3l-.2 1H16a1 1 0 011 1v1a1 1 0 01-1 1h-1.5l-.2 1H16a1 1 0 011 1v1a1 1 0 01-1 1h-2a1 1 0 01-.9-.7l-.1-.3H7l-.1.3a1 1 0 01-.9.7H4a1 1 0 01-1-1v-1a1 1 0 011-1h1.5l-.2-1H4a1 1 0 01-1-1v-1a1 1 0 011-1h1.5l-.2-1H4a1 1 0 01-1-1V4a1 1 0 011-1h2.6l.3-1.5z" clipRule="evenodd" />
-                </svg>
+                <img 
+                  src="/images/ecoguardian-logo.png" 
+                  alt="EcoGuardian Logo" 
+                  className={styles.logoIcon} 
+                />
               </div>
               <span className={styles.logoText}>EcoGuardian</span>
             </Link>
@@ -52,37 +84,65 @@ const Navbar: React.FC = () => {
 
           <div className={styles.desktopMenu}>
             {[
-              { path: '/habitat-monitoring', label: 'Habitat Monitoring' },
-              { path: '/species-tracking', label: 'Species Tracking' },
-              { path: '/carbon-footprint', label: 'Carbon Footprint' },
-              { path: '/reforestation', label: 'Reforestation' },
-              { path: '/community', label: 'Community' }
+              { path: '/habitat-monitoring', label: 'Habitat Monitoring', protected: true },
+              { path: '/species-tracking', label: 'Species Tracking', protected: true },
+              { path: '/carbon-footprint', label: 'Carbon Footprint', protected: true },
+              { path: '/reforestation', label: 'Reforestation', protected: true },
+              { path: '/community', label: 'Community', protected: true }
             ].map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`${styles.navLink} ${
-                  isScrolled ? styles.navLinkDark : styles.navLinkLight
-                } ${
-                  isActive(item.path) ? (isScrolled ? styles.activeDark : styles.activeLight) : ''
-                }`}
-              >
-                {item.label}
-                <span 
-                  className={`${styles.linkUnderline} ${styles.underlinePrimary} ${
-                    isActive(item.path) ? styles.linkUnderlineActive : styles.linkUnderlineHover
+              (!item.protected || (item.protected && currentUser)) && (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`${styles.navLink} ${
+                    isScrolled ? styles.navLinkDark : styles.navLinkLight
+                  } ${
+                    isActive(item.path) ? (isScrolled ? styles.activeDark : styles.activeLight) : ''
                   }`}
-                ></span>
-              </Link>
+                >
+                  {item.label}
+                  <span 
+                    className={`${styles.linkUnderline} ${styles.underlinePrimary} ${
+                      isActive(item.path) ? styles.linkUnderlineActive : styles.linkUnderlineHover
+                    }`}
+                  ></span>
+                </Link>
+              )
             ))}
             
-            <button 
-              className={`${styles.signInButton} ${
-                isScrolled ? styles.signInButtonDark : styles.signInButtonLight
-              }`}
-            >
-              Sign In
-            </button>
+            {/* Conditional rendering of auth buttons */}
+            {!currentUser && isLoginPage && (
+              <button 
+                onClick={handleRegister}
+                className={`${styles.signInButton} ${
+                  isScrolled ? styles.signInButtonDark : styles.signInButtonLight
+                }`}
+              >
+                Sign Up
+              </button>
+            )}
+            
+            {!currentUser && isRegisterPage && (
+              <button 
+                onClick={handleLogin}
+                className={`${styles.signInButton} ${
+                  isScrolled ? styles.signInButtonDark : styles.signInButtonLight
+                }`}
+              >
+                Sign In
+              </button>
+            )}
+            
+            {!isLoginPage && !isRegisterPage && (
+              <button 
+                onClick={handleAuthAction}
+                className={`${styles.signInButton} ${
+                  isScrolled ? styles.signInButtonDark : styles.signInButtonLight
+                }`}
+              >
+                {currentUser ? 'Sign Out' : 'Sign In'}
+              </button>
+            )}
           </div>
 
           <button
@@ -120,7 +180,14 @@ const Navbar: React.FC = () => {
           onClick={e => e.stopPropagation()}
         >
           <div className={styles.mobileMenuHeader}>
-            <div className={styles.mobileMenuTitle}>EcoGuardian</div>
+            <div className={styles.mobileMenuTitle}>
+              <img 
+                src="/images/ecoguardian-logo.png" 
+                alt="EcoGuardian Logo" 
+                className={styles.mobileMenuLogo} 
+              />
+              EcoGuardian
+            </div>
             <button 
               onClick={toggleMenu}
               className={styles.mobileMenuCloseButton}
@@ -133,26 +200,52 @@ const Navbar: React.FC = () => {
 
           <div className={styles.mobileMenuItems}>
             {[
-              { path: '/habitat-monitoring', label: 'Habitat Monitoring' },
-              { path: '/species-tracking', label: 'Species Tracking' },
-              { path: '/carbon-footprint', label: 'Carbon Footprint' },
-              { path: '/reforestation', label: 'Reforestation' },
-              { path: '/community', label: 'Community' }
+              { path: '/habitat-monitoring', label: 'Habitat Monitoring', protected: true },
+              { path: '/species-tracking', label: 'Species Tracking', protected: true },
+              { path: '/carbon-footprint', label: 'Carbon Footprint', protected: true },
+              { path: '/reforestation', label: 'Reforestation', protected: true },
+              { path: '/community', label: 'Community', protected: true }
             ].map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`${styles.mobileMenuItem} ${
-                  isActive(item.path) ? styles.mobileMenuItemActive : styles.mobileMenuItemInactive
-                }`}
-              >
-                {item.label}
-              </Link>
+              (!item.protected || (item.protected && currentUser)) && (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`${styles.mobileMenuItem} ${
+                    isActive(item.path) ? styles.mobileMenuItemActive : styles.mobileMenuItemInactive
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
             
-            <button className={styles.mobileSignInButton}>
-              Sign In
-            </button>
+            {/* Mobile menu auth buttons with conditional rendering */}
+            {!currentUser && isLoginPage && (
+              <button 
+                onClick={handleRegister}
+                className={styles.mobileSignInButton}
+              >
+                Sign Up
+              </button>
+            )}
+            
+            {!currentUser && isRegisterPage && (
+              <button 
+                onClick={handleLogin}
+                className={styles.mobileSignInButton}
+              >
+                Sign In
+              </button>
+            )}
+            
+            {!isLoginPage && !isRegisterPage && (
+              <button 
+                onClick={handleAuthAction}
+                className={styles.mobileSignInButton}
+              >
+                {currentUser ? 'Sign Out' : 'Sign In'}
+              </button>
+            )}
           </div>
         </div>
       </div>

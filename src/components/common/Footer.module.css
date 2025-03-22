@@ -103,9 +103,9 @@
 
 .logoIcon {
   height: 2.5rem;
-  width: 2.5rem;
-  color: var(--color-primary);
+  width: auto;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  object-fit: contain;
 }
 
 .logoText {
@@ -407,6 +407,18 @@
   color: var(--color-gray-400);
   font-size: 0.875rem;
   position: relative;
+}
+
+.authorLink {
+  color: var(--color-primary-light);
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+  font-weight: 500;
+}
+
+.authorLink:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
 }
 
 .poweredBy {

@@ -45,7 +45,8 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -79,7 +80,7 @@ a, button {
 img {
   max-width: 100%;
   height: auto;
-  vertical-align: middle;
+  display: inline-block;
 }
 
 /* Animation utilities */
@@ -255,4 +256,240 @@ p {
   background-clip: text;
   color: transparent;
   display: inline-block;
+}
+
+:root {
+  /* Base colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Gray scale */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* Primary colors - Green */
+  --color-primary-50: #ecfdf5;
+  --color-primary-100: #d1fae5;
+  --color-primary-200: #a7f3d0;
+  --color-primary-300: #6ee7b7;
+  --color-primary-400: #34d399;
+  --color-primary-500: #10b981;
+  --color-primary-600: #059669;
+  --color-primary-700: #047857;
+  --color-primary-800: #065f46;
+  --color-primary-900: #064e3b;
+
+  /* Error colors - Red */
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-300: #fca5a5;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+  --color-red-900: #7f1d1d;
+
+  /* Success colors - Green */
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-200: #bbf7d0;
+  --color-green-300: #86efac;
+  --color-green-400: #4ade80;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+  --color-green-800: #166534;
+  --color-green-900: #14532d;
+
+  /* Spacing */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
+  --spacing-40: 10rem;
+  --spacing-48: 12rem;
+  --spacing-56: 14rem;
+  --spacing-64: 16rem;
+
+  /* Improved responsive settings */
+  --mobile-padding: 0.75rem;
+  --tablet-padding: 1.5rem;
+  --desktop-padding: 2rem;
+  --content-max-width-mobile: 100%;
+  --content-max-width-tablet: 90%;
+  --content-max-width-desktop: 1200px;
+}
+
+/* Special styles for auth pages */
+.auth-page {
+  padding-top: 0 !important;
+}
+
+.auth-page .navbar,
+.auth-page .footer {
+  display: none;
+}
+
+/* Mobile-first approach - these rules apply to all devices and can be overridden for larger screens */
+.responsive-container {
+  width: 100%;
+  max-width: var(--content-max-width-mobile);
+  padding-left: var(--mobile-padding);
+  padding-right: var(--mobile-padding);
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: hidden;
+}
+
+/* Improved text readability on small screens */
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Better touch targets for mobile */
+button, 
+.button,
+input[type="submit"] {
+  min-height: 42px; /* Minimum height for good touch targets */
+  padding: 0.5rem 1rem;
+}
+
+/* Improve form elements on mobile */
+input, select, textarea {
+  font-size: 16px !important; /* Prevents zoom on focus in iOS */
+  width: 100%;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive tables */
+table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+/* Better spacing for stacked elements on mobile */
+.stack-mobile > * + * {
+  margin-top: 1rem;
+}
+
+/* Media query for tablets */
+@media (min-width: 768px) {
+  .responsive-container {
+    max-width: var(--content-max-width-tablet);
+    padding-left: var(--tablet-padding);
+    padding-right: var(--tablet-padding);
+  }
+  
+  h1 {
+    font-size: 2.25rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  .stack-mobile > * + * {
+    margin-top: 1.25rem;
+  }
+}
+
+/* Media query for desktop */
+@media (min-width: 1024px) {
+  .responsive-container {
+    max-width: var(--content-max-width-desktop);
+    padding-left: var(--desktop-padding);
+    padding-right: var(--desktop-padding);
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Desktop fixes */
+@media (min-width: 1280px) {
+  .responsive-container {
+    max-width: 1200px;
+  }
+}
+
+/* Fix for wide screens */
+@media (min-width: 1920px) {
+  :root {
+    --content-max-width-desktop: 1400px;
+  }
+  
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
+/* Responsive layout class for the body */
+.responsive-layout {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Hide elements on different screen sizes */
+.hide-on-mobile {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hide-on-mobile {
+    display: initial;
+  }
+  
+  .hide-on-tablet-up {
+    display: none;
+  }
+}
+
+/* Touch-friendly enhancements */
+@media (pointer: coarse) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }

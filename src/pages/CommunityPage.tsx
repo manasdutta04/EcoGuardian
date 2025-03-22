@@ -1,5 +1,9 @@
-import React from 'react';
-import styles from './Community.module.css';
+import React, { useState } from 'react';
+import styles from './CommunityPage.module.css';
+import forestBg from '../assets/images/forest-bg.jpg';
+
+// Fallback image
+const fallbackImage = forestBg;
 
 // Mock community projects data
 const communityProjects = [
@@ -9,7 +13,9 @@ const communityProjects = [
     location: "Brazil",
     category: "Forest Conservation",
     members: 128,
-    image: "https://via.placeholder.com/800x400/4ade80/FFFFFF?text=Amazon+Rainforest",
+    // Use a gradient color as background if image fails
+    image: "https://source.unsplash.com/featured/?rainforest",
+    bgColor: "#4ade80",
     description: "A community-driven project focused on preserving the Amazon rainforest through monitoring, education, and sustainable development practices."
   },
   {
@@ -18,7 +24,8 @@ const communityProjects = [
     location: "Australia",
     category: "Marine Conservation",
     members: 94,
-    image: "https://via.placeholder.com/800x400/3b82f6/FFFFFF?text=Great+Barrier+Reef",
+    image: "https://source.unsplash.com/featured/?coral,reef",
+    bgColor: "#3b82f6",
     description: "A collaborative effort to monitor coral health, water quality, and marine life in the Great Barrier Reef using AI-assisted image analysis."
   },
   {
@@ -27,7 +34,8 @@ const communityProjects = [
     location: "Global",
     category: "Urban Greening",
     members: 312,
-    image: "https://via.placeholder.com/800x400/22c55e/FFFFFF?text=Urban+Tree+Planting",
+    image: "https://source.unsplash.com/featured/?urban,trees",
+    bgColor: "#22c55e",
     description: "Connecting volunteers and organizations to plant trees in urban areas, improving air quality and creating healthier cities worldwide."
   },
   {
@@ -36,12 +44,21 @@ const communityProjects = [
     location: "United States",
     category: "Habitat Restoration",
     members: 76,
-    image: "https://via.placeholder.com/800x400/2563eb/FFFFFF?text=Wetland+Restoration",
+    image: "https://source.unsplash.com/featured/?wetland",
+    bgColor: "#2563eb",
     description: "Working to restore critical wetland ecosystems that provide natural flood control, water filtration, and habitat for countless species."
   }
 ];
 
 const CommunityPage: React.FC = () => {
+  // State to track image loading errors
+  const [imgErrors, setImgErrors] = useState<Record<number, boolean>>({});
+
+  // Handle image loading error
+  const handleImageError = (id: number) => {
+    setImgErrors(prev => ({...prev, [id]: true}));
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.contentWrapper}>
@@ -90,8 +107,23 @@ const CommunityPage: React.FC = () => {
         <div className={styles.projectsGrid}>
           {communityProjects.map((project) => (
             <div key={project.id} className={styles.projectCard}>
-              <div className={styles.projectImage}>
-                <img src={project.image} alt={project.title} />
+              <div 
+                className={styles.projectImage}
+                style={{
+                  backgroundColor: imgErrors[project.id] ? project.bgColor : 'transparent',
+                }}
+              >
+                {!imgErrors[project.id] ? (
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    onError={() => handleImageError(project.id)}
+                  />
+                ) : (
+                  <div className={styles.fallbackImageContainer}>
+                    <span>{project.title.split(' ').map(word => word[0]).join('')}</span>
+                  </div>
+                )}
               </div>
               <div className={styles.projectContent}>
                 <h3 className={styles.projectTitle}>{project.title}</h3>

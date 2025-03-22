@@ -19,9 +19,11 @@ const Footer: React.FC = () => {
           <div>
             <div className={styles.logoContainer}>
               <div className={styles.logoIconWrapper}>
-                <svg xmlns="http://www.w3.org/2000/svg" className={styles.logoIcon} viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M4.2 2.5a1 1 0 011-.8h1.5a1 1 0 011 .8l.3 1.5h1.3l.3-1.5a1 1 0 011-.8h1.5a1 1 0 011 .8l.3 1.5H15a1 1 0 011 1v1a1 1 0 01-1 1h-.3l-.2 1H16a1 1 0 011 1v1a1 1 0 01-1 1h-1.5l-.2 1H16a1 1 0 011 1v1a1 1 0 01-1 1h-2a1 1 0 01-.9-.7l-.1-.3H7l-.1.3a1 1 0 01-.9.7H4a1 1 0 01-1-1v-1a1 1 0 011-1h1.5l-.2-1H4a1 1 0 01-1-1v-1a1 1 0 011-1h1.5l-.2-1H4a1 1 0 01-1-1V4a1 1 0 011-1h2.6l.3-1.5z" clipRule="evenodd" />
-                </svg>
+                <img 
+                  src="/images/ecoguardian-logo.png" 
+                  alt="EcoGuardian Logo" 
+                  className={styles.logoIcon} 
+                />
               </div>
               <h2 className={styles.logoText}>EcoGuardian</h2>
             </div>
@@ -154,7 +156,17 @@ const Footer: React.FC = () => {
         </div>
         
         <div className={styles.footerBottom}>
-          <p className={styles.copyright}>&copy; {currentYear} EcoGuardian. All rights reserved.</p>
+          <p className={styles.copyright}>
+            &copy; {currentYear} EcoGuardian. All rights reserved. | A craft of{' '}
+            <a 
+              href="https://www.linkedin.com/in/manasdutta04/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={styles.authorLink}
+            >
+              Manas Dutta
+            </a>
+          </p>
           <p className={styles.poweredBy}>
             <svg xmlns="http://www.w3.org/2000/svg" className={styles.poweredByIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
