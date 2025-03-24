@@ -183,7 +183,8 @@ For developers who want to contribute to the project:
 
 ## Contributors
 
-Developer By- Manas Dutta ([@manasdutta](https://github.com/manasdutta04)) 
+Lead Developer- Manas Dutta ([@manasdutta](https://github.com/manasdutta04)) 
+
 Contributor- Paritosh Dey 
 
 Contributions to EcoGuardian are welcome! Please feel free to submit a Pull Request.
