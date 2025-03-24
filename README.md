@@ -181,7 +181,10 @@ For developers who want to contribute to the project:
 - `src/assets/`: Static assets like images
 - `src/firebase/`: Firebase configuration and helpers
 
-## Contributing
+## Contributors
+
+Developer By- Manas Dutta ([@manasdutta](https://github.com/manasdutta04)) 
+Contributor- Paritosh Dey 
 
 Contributions to EcoGuardian are welcome! Please feel free to submit a Pull Request.
 
